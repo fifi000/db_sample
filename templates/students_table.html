@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Table</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>Students</h1>
+
+<form action="/create" method="get">
+    <button type="submit">Create New Student</button>
+</form>
+
+<br/>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student Id Number</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.student_id_number }}</td>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>
+                <form action="/delete/{{ student.id }}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form action="/update/{{ student.id }}" method="get">
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
